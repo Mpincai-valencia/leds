@@ -143,7 +143,10 @@ public class ListDE {
     /*
     Hay datos?
     Si
-    -Le digo a un ayudante que se pare en cabeza
+    -Le digo a un ayudante1 que se pare en cabeza
+    -Le digo un ayudante2 que se pare en cabeza
+    -Declaro la varibale de la mitad dividiendo el tamaño entre 2
+    -Declaro la variable count
     -Le digo a ese ayudante que recorra la lista
     -Busco la mitad de la lista
     -Cambio el estado de la mitad de la lista
