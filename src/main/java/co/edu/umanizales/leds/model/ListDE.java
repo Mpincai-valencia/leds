@@ -158,25 +158,57 @@ public class ListDE {
     No
     -No hay datos
      */
-    public void turnOnFromTheMiddle()
-    {
+    public void turnOnFromTheMiddle() throws ListDEException {
         if(head!=null)
         {
-            NodeDE temp=head;
-            int middle=size/2;
+            NodeDE temp1=head;
+            NodeDE temp2=head;
+            int middle=(size+1)/2;
             int count=1;
-            while(count!=middle)
+            while (count <= middle && temp1 != null && temp2 != null)
             {
-                temp.getNext();
-                count++;
-                if(count==middle)
+
+                if (count == middle)
                 {
-                    temp.getData().setState(true);
-                    temp.getData().getDateOn();
+                    temp1.getData().setState(true);
+                    temp1.getData().setDateOn(LocalTime.now());
+                    sleep(1000);
+                    temp1.getData().setState(false);
+                    temp1.getData().setDateOff(LocalTime.now());
                 }
+                temp1 = temp1.getNext();
+                temp2 = temp2.getPrevious();
+                count++;
             }
 
+            while (temp1 != null && temp2 != null)
+            {
+                temp1.getData().setState(true);
+                temp1.getData().setDateOn(LocalTime.now());
+                sleep(1000);
+                temp1.getData().setState(false);
+                temp1.getData().setDateOff(LocalTime.now());
 
+                temp2.getData().setState(true);
+                temp2.getData().setDateOn(LocalTime.now());
+                sleep(1000);
+                temp2.getData().setState(false);
+                temp2.getData().setDateOff(LocalTime.now());
+
+                temp1 = temp1.getNext();
+                temp2 = temp2.getPrevious();
+
+            }
+            if(temp1.getNext()==null)
+            {
+                temp1.getData().setState(true);
+                temp1.getData().setDateOn(LocalTime.now());
+            }
+            if(temp2.getPrevious()==null)
+            {
+                temp2.getData().setState(true);
+                temp2.getData().setDateOn(LocalTime.now());
+            }
         }
     }
 
