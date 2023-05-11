@@ -3,6 +3,7 @@ package co.edu.umanizales.leds.model;
 import co.edu.umanizales.leds.exception.ListDEException;
 import lombok.*;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,7 +140,45 @@ public class ListDE {
             throw new ListDEException("Error en la operación de sleep");
         }
     }
+    /*
+    Hay datos?
+    Si
+    -Le digo a un ayudante que se pare en cabeza
+    -Le digo a ese ayudante que recorra la lista
+    -Busco la mitad de la lista
+    -Cambio el estado de la mitad de la lista
+    -Lo prendo
+    -Cambio la hora que se prendió
+    -LLamo a sleep
+    -Lo apago
+    -Cambio la hora en la que se apago
+    -Llamo a otro ayudante para que m recorra la otra mitad de la lista
+    -Voy prendiendo cada extremo cada que se vaya apagando el anterior
+    -Cuando llegue a los extremos los dejo encendidos
+    No
+    -No hay datos
+     */
+    public void turnOnFromTheMiddle()
+    {
+        if(head!=null)
+        {
+            NodeDE temp=head;
+            int middle=size/2;
+            int count=1;
+            while(count!=middle)
+            {
+                temp.getNext();
+                count++;
+                if(count==middle)
+                {
+                    temp.getData().setState(true);
+                    temp.getData().getDateOn();
+                }
+            }
 
+
+        }
+    }
 
 
 
