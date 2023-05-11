@@ -2,6 +2,7 @@ package co.edu.umanizales.leds.controller;
 
 import co.edu.umanizales.leds.controller.dto.LedDTO;
 import co.edu.umanizales.leds.controller.dto.ResponseDTO;
+import co.edu.umanizales.leds.exception.ListDEException;
 import co.edu.umanizales.leds.model.Led;
 import co.edu.umanizales.leds.service.LedService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,19 @@ public class LedsController {
         ledService.getLeds().restartLedList();
         return new ResponseEntity<>(new ResponseDTO(200,"Se han reiniciado los leds",null),HttpStatus.OK);
     }
+    @GetMapping(path ="/turnonfromthemiddle")
+    public ResponseEntity<ResponseDTO>turnonfromthemiddle()
+    {
+        try {
+            ledService.getLeds().turnOnFromTheMiddle();
+        } catch (ListDEException e) {
+            return new ResponseEntity<>(new ResponseDTO(
+                    409,e.getMessage(),
+                    null), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new ResponseDTO(200,"Se han reiniciado los leds",null),HttpStatus.OK);
+    }
+
 
 
 }
